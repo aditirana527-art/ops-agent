@@ -1,0 +1,8 @@
+[
+  {"customer_id": "C-101", "name": "Brightwave Events", "tier": "Gold", "credit_limit": 50000, "outstanding_balance": 12000, "credit_status": "ok", "contact_email": "procurement@brightwave.example", "account_manager": "Meera Kapoor"},
+  {"customer_id": "C-102", "name": "Metro Convention Center", "tier": "Gold", "credit_limit": 80000, "outstanding_balance": 20500, "credit_status": "ok", "contact_email": "av-buying@metroconvention.example", "account_manager": "Meera Kapoor"},
+  {"customer_id": "C-103", "name": "Lumina Schools Group", "tier": "Silver", "credit_limit": 30000, "outstanding_balance": 4200, "credit_status": "ok", "contact_email": "purchasing@lumina-schools.example", "account_manager": "Arjun Rao"},
+  {"customer_id": "C-104", "name": "Harbor Hotels", "tier": "Standard", "credit_limit": 35000, "outstanding_balance": 41000, "credit_status": "hold", "contact_email": "it@harborhotels.example", "account_manager": "Arjun Rao"},
+  {"customer_id": "C-105", "name": "Pixel Retail", "tier": "Standard", "credit_limit": 15000, "outstanding_balance": 0, "credit_status": "ok", "contact_email": "ops@pixelretail.example", "account_manager": "Sana Iyer"},
+  {"customer_id": "C-106", "name": "Skyline AV Integrators", "tier": "Silver", "credit_limit": 40000, "outstanding_balance": 8800, "credit_status": "ok", "contact_email": "buying@skylineav.example", "account_manager": "Sana Iyer"}
+]

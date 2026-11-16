@@ -1,0 +1,13 @@
+sku,name,category,status,unit_cost,unit_price,stock_on_hand,reserved_qty,reorder_level,reorder_qty,supplier_id,last_updated
+P-1001,HDMI 2.1 Cable 2m,cables,active,4.50,12.00,340,200,150,500,S01,2026-11-14
+P-1002,Wireless Lavalier Mic Kit,audio,active,62.00,129.00,6,10,20,40,S02,2026-11-12
+P-1003,4K Laser Projector 5000lm,video,active,1450.00,2290.00,6,2,5,10,S03,2026-11-02
+P-1004,Ceiling Speaker 6.5in (pair),audio,active,58.00,120.00,45,10,40,100,S02,2026-11-13
+P-1005,Rack-mount AV Receiver 8ch,audio,active,410.00,699.00,9,4,6,12,S04,2026-11-09
+P-1006,PTZ Conference Camera,video,active,380.00,650.00,4,3,6,10,S03,2026-11-13
+P-1007,Cat6 Patch Cable 1m (10pk),cables,active,11.00,26.00,220,100,100,300,S01,2026-11-14
+P-1008,Video Wall Controller 2x2,video,active,920.00,1480.00,2,2,2,4,S04,2026-11-09
+P-1009,Digital Signage Player,video,active,135.00,240.00,31,20,,50,S03,2026-11-15
+P-1010,Wall Mount Bracket Heavy Duty,accessories,active,14.00,34.00,410,40,120,300,S05,2026-11-15
+P-1011,Soundbar Pro 120W,audio,active,150.00,275.00,12,12,10,25,S02,2026-11-12
+P-1012,VGA Switcher 4-port,accessories,discontinued,22.00,49.00,5,5,0,0,S05,2026-10-20

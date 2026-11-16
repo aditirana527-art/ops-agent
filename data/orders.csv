@@ -1,0 +1,10 @@
+order_id,customer_id,order_date,promised_date,status,notes
+O-5001,C-101,2026-11-10,2026-11-20,confirmed,
+O-5002,C-102,2026-11-12,2026-11-25,pending,
+O-5003,C-103,2026-11-05,2026-11-15,confirmed,
+O-5004,C-101,2026-11-14,2026-11-30,pending,
+O-5005,C-104,2026-11-13,2026-11-24,pending,
+O-5006,C-105,2026-11-15,2026-11-27,pending,Customer emailed on 2026-11-16 requesting cancellation before dispatch
+O-5007,C-999,2026-11-15,2026-11-28,pending,
+O-5008,C-102,2026-11-01,2026-11-08,shipped,
+O-5009,C-103,2026-11-16,2026-11-23,pending,

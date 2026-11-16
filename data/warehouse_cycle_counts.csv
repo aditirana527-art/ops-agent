@@ -1,0 +1,7 @@
+sku,counted_qty,count_date,counted_by
+P-1003,4,2026-11-10,warehouse-a
+P-1006,4,2026-11-10,warehouse-a
+P-1001,338,2026-11-12,warehouse-b
+P-1010,410,2026-11-12,warehouse-b
+P-1002,6,2026-11-09,warehouse-a
+P-1011,12,2026-11-10,warehouse-a

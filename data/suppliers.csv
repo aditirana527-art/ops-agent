@@ -1,0 +1,6 @@
+supplier_id,name,email,lead_time_days,payment_terms,rating,status
+S01,CableWorks Ltd,orders@cableworks.example,7,Net 30,4.6,active
+S02,SonicSource Audio,sales@sonicsource.example,7,Net 45,4.2,active
+S03,VisionTech Imports,orders@visiontech.example,21,Net 30,4.4,active
+S04,AVPro Systems,support@avpro.example,10,Net 30,3.1,suspended
+S05,MountMaster,orders@mountmaster.example,5,Net 30,4.0,active

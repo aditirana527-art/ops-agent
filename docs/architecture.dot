@@ -1,0 +1,59 @@
+digraph OpsAgent {
+  rankdir=TB; compound=true; nodesep=0.35; ranksep=0.55; fontname="Helvetica"; bgcolor="white";
+  node [fontname="Helvetica", fontsize=11, shape=box, style="rounded,filled", fillcolor="#F4F6F8", color="#5B6770", margin="0.15,0.08"];
+  edge [fontname="Helvetica", fontsize=9, color="#5B6770"];
+  labelloc=t; fontsize=18; label="OpsAgent: Autonomous Knowledge Execution Agent (architecture)";
+
+  user [label="Operations user\n(natural-language request)", fillcolor="#FFF4D6", color="#B58900"];
+
+  subgraph cluster_core { label="Agent core (agent/agent.py)"; style="rounded,filled"; fillcolor="#EAF3FF"; color="#2B6CB0"; fontsize=12;
+    recall [label="1. Recall long-term memory\n(TF-IDF relevance)"];
+    plan   [label="2. Plan  (LLM call)\nsources, checks, possible actions"];
+    loop   [label="3. Reason / act loop  (LLM, native tool calling)\nobserve -> think -> call tools -> observe ...", fillcolor="#D6E8FF"];
+    report [label="4. Final report\nOutcome / Findings / Actions + why /\nData issues / Follow-up"];
+    reflect[label="5. Reflect  (LLM call)\nsave durable lessons"];
+    recall -> plan -> loop -> report -> reflect;
+  }
+
+  llm [label="LLM provider\n(Anthropic or OpenAI)", shape=box3d, fillcolor="#E9E2FF", color="#6B46C1"];
+
+  subgraph cluster_exec { label="Tool execution (tool registry, agent/tools.py)"; style="rounded,filled"; fillcolor="#EEF8EE"; color="#2F855A"; fontsize=12;
+    validate [label="Validate arguments\n(actions need reasoning + evidence)"];
+    par  [label="Read tools + standard actions\nrun IN PARALLEL (thread pool)"];
+    gate [label="CRITICAL / irreversible actions\n-> HUMAN APPROVAL gate (y/N + reason)\none at a time", fillcolor="#FFE3E3", color="#C53030"];
+    validate -> par; validate -> gate;
+  }
+
+  subgraph cluster_know { label="Internal knowledge sources (read-only)"; style="rounded,filled"; fillcolor="#FFFFFF"; color="#2F855A"; fontsize=12;
+    db   [label="SQLite DB\nproducts, suppliers, orders,\norder_items, purchase_orders", shape=cylinder, fillcolor="#DFF3E3"];
+    csv  [label="CSV files\nsupplier price list,\nwarehouse cycle counts", shape=note, fillcolor="#DFF3E3"];
+    json [label="JSON\ncustomer master", shape=note, fillcolor="#DFF3E3"];
+    pol  [label="Policy documents (Markdown)\nchunked + TF-IDF index", shape=note, fillcolor="#DFF3E3"];
+    mem  [label="Long-term memory\n(JSONL + TF-IDF)", shape=cylinder, fillcolor="#DFF3E3"];
+  }
+
+  subgraph cluster_act { label="Action layer (agent/actions.py)"; style="rounded,filled"; fillcolor="#FFF9F0"; color="#C05621"; fontsize=12;
+    a1 [label="create_purchase_order"]; a2 [label="update_order_status"]; a3 [label="send_notification\n(outbox)"]; a4 [label="flag_for_human_review"];
+  }
+
+  audit [label="Audit log (hash-chained JSONL)\nrun / plan / every LLM turn / tool call / result /\napproval request + decision / memory writes", shape=folder, fillcolor="#FDE2F3", color="#B83280"];
+  mon   [label="Monitoring report\n(eval/monitor.py)\nerrors, latency, tokens, approvals,\npolicy-before-action, citations", fillcolor="#FDE2F3", color="#B83280"];
+  eval  [label="Evaluation harness (eval/run_eval.py)\n20 labelled traces -> precision / recall,\nviolations, transcripts", fillcolor="#FDE2F3", color="#B83280"];
+  human [label="Human operator", shape=oval, fillcolor="#FFE3E3", color="#C53030"];
+
+  user -> recall;
+  loop -> llm [dir=both, label="messages /\ntool calls"];
+  plan -> llm [dir=both, style=dashed];
+  reflect -> llm [dir=both, style=dashed];
+  loop -> validate [label="tool calls"];
+  par -> db; par -> csv; par -> json; par -> pol; par -> mem;
+  par -> a4; par -> a2 [label="on_hold / confirm /\nbackorder, internal msgs"];
+  gate -> human [dir=both, label="approve / deny + reason"];
+  gate -> a1 [label="approved"]; gate -> a2 [label="cancel"]; gate -> a3 [label="external"];
+  reflect -> mem [label="write lessons"];
+  a1 -> db [style=dashed]; a2 -> db [style=dashed]; a4 -> db [style=dashed];
+  loop -> audit [style=dotted, label="every step"]; gate -> audit [style=dotted];
+  audit -> mon; audit -> eval [style=invis];
+  eval -> mon [style=dashed, label="feeds"];
+  report -> user [label="explained result", constraint=false, color="#B58900"];
+}
